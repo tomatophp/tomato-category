@@ -1,0 +1,38 @@
+{
+    "name": "tomatophp/tomato-category",
+    "type": "library",
+    "description": "manage category/tags/types for any model with splade/tomato PHP",
+    "keywords": [
+        "php",
+        "laravel",
+        "template"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "TomatoPHP\\TomatoCategory\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TomatoPHP\\TomatoCategory\\TomatoCategoryServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Fady Mondy",
+            "email": "info@3x1.io"
+        }
+    ],
+    "require": {
+        "php": "^8.0.2",
+        "tomatophp/console-helpers": "^1.0"
+    }
+}
