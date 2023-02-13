@@ -28,6 +28,11 @@ class Category extends Model
      */
     protected $fillable = ['parent_id', 'name', 'slug', 'description', 'icon', 'color', 'activated', 'menu', 'created_at', 'updated_at'];
 
+
+    protected $casts = [
+        'activated' => 'boolean',
+        'menu' => 'boolean',
+    ];
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -39,7 +44,7 @@ class Category extends Model
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function category()
+    public function parent()
     {
         return $this->belongsTo('TomatoPHP\TomatoCategory\Models\Category', 'parent_id');
     }

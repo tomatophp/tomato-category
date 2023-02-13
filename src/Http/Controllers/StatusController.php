@@ -19,7 +19,7 @@ class StatusController extends Controller
     {
         return Tomato::index(
             request: $request,
-            view: 'category::status.index',
+            view: 'tomato-category::status.index',
             table: \TomatoPHP\TomatoCategory\Tables\StatusTable::class,
         );
     }
@@ -32,7 +32,7 @@ class StatusController extends Controller
     {
         return Tomato::json(
             request: $request,
-            model: \TomatoPHP\TomatoCategory\Entities\Status::class,
+            model: \TomatoPHP\TomatoCategory\Models\Status::class,
         );
     }
 
@@ -42,7 +42,7 @@ class StatusController extends Controller
     public function create(): View
     {
         return Tomato::create(
-            view: 'category::status.create',
+            view: 'tomato-category::status.create',
         );
     }
 
@@ -54,7 +54,7 @@ class StatusController extends Controller
     {
         $response = Tomato::store(
             request: $request,
-            model: \TomatoPHP\TomatoCategory\Entities\Status::class,
+            model: \TomatoPHP\TomatoCategory\Models\Status::class,
             message: __('Status created successfully'),
             redirect: 'admin.status.index',
         );
@@ -63,35 +63,35 @@ class StatusController extends Controller
     }
 
     /**
-     * @param \TomatoPHP\TomatoCategory\Entities\Status $model
+     * @param \TomatoPHP\TomatoCategory\Models\Status $model
      * @return View
      */
-    public function show(\TomatoPHP\TomatoCategory\Entities\Status $model): View
+    public function show(\TomatoPHP\TomatoCategory\Models\Status $model): View
     {
         return Tomato::get(
             model: $model,
-            view: 'category::status.show',
+            view: 'tomato-category::status.show',
         );
     }
 
     /**
-     * @param \TomatoPHP\TomatoCategory\Entities\Status $model
+     * @param \TomatoPHP\TomatoCategory\Models\Status $model
      * @return View
      */
-    public function edit(\TomatoPHP\TomatoCategory\Entities\Status $model): View
+    public function edit(\TomatoPHP\TomatoCategory\Models\Status $model): View
     {
         return Tomato::get(
             model: $model,
-            view: 'category::status.edit',
+            view: 'tomato-category::status.edit',
         );
     }
 
     /**
      * @param \TomatoPHP\TomatoCategory\Http\Requests\Status\StatusUpdateRequest $request
-     * @param \TomatoPHP\TomatoCategory\Entities\Status $user
+     * @param \TomatoPHP\TomatoCategory\Models\Status $user
      * @return RedirectResponse
      */
-    public function update(\TomatoPHP\TomatoCategory\Http\Requests\Status\StatusUpdateRequest $request, \TomatoPHP\TomatoCategory\Entities\Status $model): RedirectResponse
+    public function update(\TomatoPHP\TomatoCategory\Http\Requests\Status\StatusUpdateRequest $request, \TomatoPHP\TomatoCategory\Models\Status $model): RedirectResponse
     {
         $response = Tomato::update(
             request: $request,
@@ -104,10 +104,10 @@ class StatusController extends Controller
     }
 
     /**
-     * @param \TomatoPHP\TomatoCategory\Entities\Status $model
+     * @param \TomatoPHP\TomatoCategory\Models\Status $model
      * @return RedirectResponse
      */
-    public function destroy(\TomatoPHP\TomatoCategory\Entities\Status $model): RedirectResponse
+    public function destroy(\TomatoPHP\TomatoCategory\Models\Status $model): RedirectResponse
     {
         return Tomato::destroy(
             model: $model,

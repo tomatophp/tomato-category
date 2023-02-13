@@ -62,6 +62,10 @@ class CategoryTable extends AbstractTable
                 label: __('Id'),
                 sortable: true)
             ->column(
+                key: 'icon',
+                label: __('Icon'),
+                sortable: true)
+            ->column(
                 key: 'parent.name',
                 label: __('Parent'),
                 sortable: true,
@@ -69,22 +73,6 @@ class CategoryTable extends AbstractTable
             ->column(
                 key: 'name',
                 label: __('Name'),
-                sortable: true)
-            ->column(
-                key: 'slug',
-                label: __('Slug'),
-                sortable: true)
-            ->column(
-                key: 'description',
-                label: __('Description'),
-                sortable: true)
-            ->column(
-                key: 'icon',
-                label: __('Icon'),
-                sortable: true)
-            ->column(
-                key: 'color',
-                label: __('Color'),
                 sortable: true)
             ->column(
                 key: 'activated',

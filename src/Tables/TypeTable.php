@@ -62,25 +62,14 @@ class TypeTable extends AbstractTable
                 label: __('Id'),
                 sortable: true)
             ->column(
-                key: 'name',
-                label: __('Name'),
-                sortable: true)
-            ->column(
-                key: 'key',
-                label: __('Key'),
-                sortable: true)
-            ->column(
-                key: 'description',
-                label: __('Description'),
-                sortable: true)
-            ->column(
-                key: 'color',
-                label: __('Color'),
-                sortable: true)
-            ->column(
                 key: 'icon',
                 label: __('Icon'),
                 sortable: true)
+            ->column(
+                key: 'name',
+                label: __('Name'),
+                sortable: true)
+
             ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
             ->paginate(15);
     }

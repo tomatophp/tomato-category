@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+Route::middleware(['web','auth', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/types', [\TomatoPHP\TomatoCategory\Http\Controllers\TypeController::class, 'index'])->name('types.index');
     Route::get('admin/types/api', [\TomatoPHP\TomatoCategory\Http\Controllers\TypeController::class, 'api'])->name('types.api');
     Route::get('admin/types/create', [\TomatoPHP\TomatoCategory\Http\Controllers\TypeController::class, 'create'])->name('types.create');
@@ -13,7 +13,7 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
     Route::delete('admin/types/{model}', [\TomatoPHP\TomatoCategory\Http\Controllers\TypeController::class, 'destroy'])->name('types.destroy');
 });
 
-Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+Route::middleware(['web','auth', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/status', [\TomatoPHP\TomatoCategory\Http\Controllers\StatusController::class, 'index'])->name('status.index');
     Route::get('admin/status/api', [\TomatoPHP\TomatoCategory\Http\Controllers\StatusController::class, 'api'])->name('status.api');
     Route::get('admin/status/create', [\TomatoPHP\TomatoCategory\Http\Controllers\StatusController::class, 'create'])->name('status.create');
@@ -24,7 +24,7 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
     Route::delete('admin/status/{model}', [\TomatoPHP\TomatoCategory\Http\Controllers\StatusController::class, 'destroy'])->name('status.destroy');
 });
 
-Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+Route::middleware(['web','auth', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/categories', [\TomatoPHP\TomatoCategory\Http\Controllers\CategoryController::class, 'index'])->name('categories.index');
     Route::get('admin/categories/api', [\TomatoPHP\TomatoCategory\Http\Controllers\CategoryController::class, 'api'])->name('categories.api');
     Route::get('admin/categories/create', [\TomatoPHP\TomatoCategory\Http\Controllers\CategoryController::class, 'create'])->name('categories.create');
@@ -35,7 +35,7 @@ Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(functio
     Route::delete('admin/categories/{model}', [\TomatoPHP\TomatoCategory\Http\Controllers\CategoryController::class, 'destroy'])->name('categories.destroy');
 });
 
-Route::middleware(['auth', 'splade', 'verified'])->name('admin.')->group(function () {
+Route::middleware(['web','auth', 'splade', 'verified'])->name('admin.')->group(function () {
     Route::get('admin/categories-metas', [\TomatoPHP\TomatoCategory\Http\Controllers\CategoriesMetaController::class, 'index'])->name('categories-metas.index');
     Route::get('admin/categories-metas/api', [\TomatoPHP\TomatoCategory\Http\Controllers\CategoriesMetaController::class, 'api'])->name('categories-metas.api');
     Route::get('admin/categories-metas/create', [\TomatoPHP\TomatoCategory\Http\Controllers\CategoriesMetaController::class, 'create'])->name('categories-metas.create');

@@ -19,7 +19,7 @@ class CategoryController extends Controller
     {
         return Tomato::index(
             request: $request,
-            view: 'category::categories.index',
+            view: 'tomato-category::categories.index',
             table: \TomatoPHP\TomatoCategory\Tables\CategoryTable::class,
         );
     }
@@ -32,7 +32,7 @@ class CategoryController extends Controller
     {
         return Tomato::json(
             request: $request,
-            model: \TomatoPHP\TomatoCategory\Entities\Category::class,
+            model: \TomatoPHP\TomatoCategory\Models\Category::class,
         );
     }
 
@@ -42,7 +42,7 @@ class CategoryController extends Controller
     public function create(): View
     {
         return Tomato::create(
-            view: 'category::categories.create',
+            view: 'tomato-category::categories.create',
         );
     }
 
@@ -54,7 +54,7 @@ class CategoryController extends Controller
     {
         $response = Tomato::store(
             request: $request,
-            model: \TomatoPHP\TomatoCategory\Entities\Category::class,
+            model: \TomatoPHP\TomatoCategory\Models\Category::class,
             message: __('Category created successfully'),
             redirect: 'admin.categories.index',
         );
@@ -63,35 +63,35 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param \TomatoPHP\TomatoCategory\Entities\Category $model
+     * @param \TomatoPHP\TomatoCategory\Models\Category $model
      * @return View
      */
-    public function show(\TomatoPHP\TomatoCategory\Entities\Category $model): View
+    public function show(\TomatoPHP\TomatoCategory\Models\Category $model): View
     {
         return Tomato::get(
             model: $model,
-            view: 'category::categories.show',
+            view: 'tomato-category::categories.show',
         );
     }
 
     /**
-     * @param \TomatoPHP\TomatoCategory\Entities\Category $model
+     * @param \TomatoPHP\TomatoCategory\Models\Category $model
      * @return View
      */
-    public function edit(\TomatoPHP\TomatoCategory\Entities\Category $model): View
+    public function edit(\TomatoPHP\TomatoCategory\Models\Category $model): View
     {
         return Tomato::get(
             model: $model,
-            view: 'category::categories.edit',
+            view: 'tomato-category::categories.edit',
         );
     }
 
     /**
      * @param \TomatoPHP\TomatoCategory\Http\Requests\Category\CategoryUpdateRequest $request
-     * @param \TomatoPHP\TomatoCategory\Entities\Category $user
+     * @param \TomatoPHP\TomatoCategory\Models\Category $user
      * @return RedirectResponse
      */
-    public function update(\TomatoPHP\TomatoCategory\Http\Requests\Category\CategoryUpdateRequest $request, \TomatoPHP\TomatoCategory\Entities\Category $model): RedirectResponse
+    public function update(\TomatoPHP\TomatoCategory\Http\Requests\Category\CategoryUpdateRequest $request, \TomatoPHP\TomatoCategory\Models\Category $model): RedirectResponse
     {
         $response = Tomato::update(
             request: $request,
@@ -104,10 +104,10 @@ class CategoryController extends Controller
     }
 
     /**
-     * @param \TomatoPHP\TomatoCategory\Entities\Category $model
+     * @param \TomatoPHP\TomatoCategory\Models\Category $model
      * @return RedirectResponse
      */
-    public function destroy(\TomatoPHP\TomatoCategory\Entities\Category $model): RedirectResponse
+    public function destroy(\TomatoPHP\TomatoCategory\Models\Category $model): RedirectResponse
     {
         return Tomato::destroy(
             model: $model,

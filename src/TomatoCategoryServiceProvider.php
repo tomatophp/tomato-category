@@ -13,16 +13,16 @@ class TomatoCategoryServiceProvider extends ServiceProvider
     {
         //Register generate command
         $this->commands([
-           \TomatoPHP\TomatoCategories\Console\TomatoCategoriesInstall::class,
+           \TomatoPHP\TomatoCategory\Console\TomatoCategoriesInstall::class,
         ]);
 
         //Register Config file
-        $this->mergeConfigFrom(__DIR__.'/../config/tomato-categories.php', 'tomato-categories');
+        $this->mergeConfigFrom(__DIR__.'/../config/tomato-category.php', 'tomato-category');
 
         //Publish Config
         $this->publishes([
-           __DIR__.'/../config/tomato-categories.php' => config_path('tomato-categories.php'),
-        ], 'tomato-categories-config');
+           __DIR__.'/../config/tomato-category.php' => config_path('tomato-category.php'),
+        ], 'tomato-category-config');
 
         //Register Migrations
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
@@ -30,22 +30,22 @@ class TomatoCategoryServiceProvider extends ServiceProvider
         //Publish Migrations
         $this->publishes([
            __DIR__.'/../database/migrations' => database_path('migrations'),
-        ], 'tomato-categories-migrations');
+        ], 'tomato-category-migrations');
         //Register views
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'tomato-categories');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'tomato-category');
 
         //Publish Views
         $this->publishes([
-           __DIR__.'/../resources/views' => resource_path('views/vendor/tomato-categories'),
-        ], 'tomato-categories-views');
+           __DIR__.'/../resources/views' => resource_path('views/vendor/tomato-category'),
+        ], 'tomato-category-views');
 
         //Register Langs
-        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tomato-categories');
+        $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'tomato-category');
 
         //Publish Lang
         $this->publishes([
-           __DIR__.'/../resources/lang' => app_path('lang/vendor/tomato-categories'),
-        ], 'tomato-categories-lang');
+           __DIR__.'/../resources/lang' => app_path('lang/vendor/tomato-category'),
+        ], 'tomato-category-lang');
 
         //Register Routes
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');

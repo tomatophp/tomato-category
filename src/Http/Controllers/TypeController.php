@@ -19,7 +19,7 @@ class TypeController extends Controller
     {
         return Tomato::index(
             request: $request,
-            view: 'category::types.index',
+            view: 'tomato-category::types.index',
             table: \TomatoPHP\TomatoCategory\Tables\TypeTable::class,
         );
     }
@@ -32,7 +32,7 @@ class TypeController extends Controller
     {
         return Tomato::json(
             request: $request,
-            model: \TomatoPHP\TomatoCategory\Entities\Type::class,
+            model: \TomatoPHP\TomatoCategory\Models\Type::class,
         );
     }
 
@@ -42,7 +42,7 @@ class TypeController extends Controller
     public function create(): View
     {
         return Tomato::create(
-            view: 'category::types.create',
+            view: 'tomato-category::types.create',
         );
     }
 
@@ -54,7 +54,7 @@ class TypeController extends Controller
     {
         $response = Tomato::store(
             request: $request,
-            model: \TomatoPHP\TomatoCategory\Entities\Type::class,
+            model: \TomatoPHP\TomatoCategory\Models\Type::class,
             message: __('Type created successfully'),
             redirect: 'admin.types.index',
         );
@@ -63,35 +63,35 @@ class TypeController extends Controller
     }
 
     /**
-     * @param \TomatoPHP\TomatoCategory\Entities\Type $model
+     * @param \TomatoPHP\TomatoCategory\Models\Type $model
      * @return View
      */
-    public function show(\TomatoPHP\TomatoCategory\Entities\Type $model): View
+    public function show(\TomatoPHP\TomatoCategory\Models\Type $model): View
     {
         return Tomato::get(
             model: $model,
-            view: 'category::types.show',
+            view: 'tomato-category::types.show',
         );
     }
 
     /**
-     * @param \TomatoPHP\TomatoCategory\Entities\Type $model
+     * @param \TomatoPHP\TomatoCategory\Models\Type $model
      * @return View
      */
-    public function edit(\TomatoPHP\TomatoCategory\Entities\Type $model): View
+    public function edit(\TomatoPHP\TomatoCategory\Models\Type $model): View
     {
         return Tomato::get(
             model: $model,
-            view: 'category::types.edit',
+            view: 'tomato-category::types.edit',
         );
     }
 
     /**
      * @param \TomatoPHP\TomatoCategory\Http\Requests\Type\TypeUpdateRequest $request
-     * @param \TomatoPHP\TomatoCategory\Entities\Type $user
+     * @param \TomatoPHP\TomatoCategory\Models\Type $user
      * @return RedirectResponse
      */
-    public function update(\TomatoPHP\TomatoCategory\Http\Requests\Type\TypeUpdateRequest $request, \TomatoPHP\TomatoCategory\Entities\Type $model): RedirectResponse
+    public function update(\TomatoPHP\TomatoCategory\Http\Requests\Type\TypeUpdateRequest $request, \TomatoPHP\TomatoCategory\Models\Type $model): RedirectResponse
     {
         $response = Tomato::update(
             request: $request,
@@ -104,10 +104,10 @@ class TypeController extends Controller
     }
 
     /**
-     * @param \TomatoPHP\TomatoCategory\Entities\Type $model
+     * @param \TomatoPHP\TomatoCategory\Models\Type $model
      * @return RedirectResponse
      */
-    public function destroy(\TomatoPHP\TomatoCategory\Entities\Type $model): RedirectResponse
+    public function destroy(\TomatoPHP\TomatoCategory\Models\Type $model): RedirectResponse
     {
         return Tomato::destroy(
             model: $model,

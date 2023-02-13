@@ -2,7 +2,8 @@
     <h1 class="text-2xl font-bold mb-4">{{trans('tomato-admin::global.crud.view')}} {{ __('Category') }} #{{$model->id}}</h1>
 
     <div class="flex flex-col space-y-4">
-        
+
+        @if( $model->parent)
           <div class="flex justify-between">
               <div>
                   <h3 class="text-lg font-bold">
@@ -11,10 +12,11 @@
               </div>
               <div>
                   <h3 class="text-lg">
-                      {{ $model->Parent->name}}
+                      {{ $model->parent->name}}
                   </h3>
               </div>
           </div>
+        @endif
 
           <div class="flex justify-between">
               <div>
@@ -55,8 +57,8 @@
               </div>
           </div>
 
-          
-          
+
+
           <div class="flex justify-between">
               <div>
                   <h3 class="text-lg font-bold">
