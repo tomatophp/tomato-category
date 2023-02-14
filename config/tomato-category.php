@@ -1,5 +1,8 @@
 <?php
 
 return [
-    //You config go here...
+    "types" => [
+        "content"=> "Content",
+        "accounts"=> "Accounts",
+    ]
 ];

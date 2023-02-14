@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('status', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique()->index();
+            $table->string('for');
             $table->string('description')->nullable();
             $table->string('color')->nullable();
             $table->string('icon')->nullable();

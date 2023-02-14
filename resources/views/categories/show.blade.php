@@ -52,7 +52,11 @@
               </div>
               <div>
                   <h3 class="text-lg">
-                      {{ $model->description}}
+                      @if($model->description)
+                          {{$model->description}}
+                      @else
+                          -
+                      @endif
                   </h3>
               </div>
           </div>
@@ -67,7 +71,11 @@
               </div>
               <div>
                   <h3 class="text-lg">
-                      {{ $model->activated}}
+                      @if($model->activated)
+                          <x-heroicon-s-check-circle class="text-green-600 h-8 w-8 ltr:mr-2 rtl:ml-2"/>
+                      @else
+                          <x-heroicon-s-x-circle class="text-red-600 h-8 w-8 ltr:mr-2 rtl:ml-2"/>
+                      @endif
                   </h3>
               </div>
           </div>
@@ -75,12 +83,16 @@
           <div class="flex justify-between">
               <div>
                   <h3 class="text-lg font-bold">
-                      {{__('Menu')}}
+                      {{__('Show On Menu')}}
                   </h3>
               </div>
               <div>
                   <h3 class="text-lg">
-                      {{ $model->menu}}
+                      @if($model->menu)
+                          <x-heroicon-s-check-circle class="text-green-600 h-8 w-8 ltr:mr-2 rtl:ml-2"/>
+                      @else
+                          <x-heroicon-s-x-circle class="text-red-600 h-8 w-8 ltr:mr-2 rtl:ml-2"/>
+                      @endif
                   </h3>
               </div>
           </div>

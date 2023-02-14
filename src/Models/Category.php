@@ -26,7 +26,7 @@ class Category extends Model
     /**
      * @var array
      */
-    protected $fillable = ['parent_id', 'name', 'slug', 'description', 'icon', 'color', 'activated', 'menu', 'created_at', 'updated_at'];
+    protected $fillable = ['for','parent_id', 'name', 'slug', 'description', 'icon', 'color', 'activated', 'menu', 'created_at', 'updated_at'];
 
 
     protected $casts = [
@@ -39,6 +39,11 @@ class Category extends Model
     public function categorables()
     {
         return $this->hasMany('TomatoPHP\TomatoCategory\Models\Categorable');
+    }
+
+    public function children()
+    {
+        return $this->hasMany('TomatoPHP\TomatoCategory\Models\Category', 'parent_id');
     }
 
     /**

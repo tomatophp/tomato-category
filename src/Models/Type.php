@@ -22,7 +22,7 @@ class Type extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'key', 'description', 'color', 'icon', 'created_at', 'updated_at'];
+    protected $fillable = ['for','name', 'key', 'description', 'color', 'icon', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

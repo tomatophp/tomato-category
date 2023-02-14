@@ -27,7 +27,7 @@ class Status extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'description', 'color', 'icon', 'created_at', 'updated_at'];
+    protected $fillable = ['for','name', 'description', 'color', 'icon', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

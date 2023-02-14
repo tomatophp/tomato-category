@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use TomatoPHP\TomatoPHP\Services\Tomato;
 
@@ -52,6 +53,9 @@ class CategoryController extends Controller
      */
     public function store(\TomatoPHP\TomatoCategory\Http\Requests\Category\CategoryStoreRequest $request): RedirectResponse
     {
+        if(!$request->has('slug') || empty($request->slug)) {
+            $request->merge(['slug' => Str::slug($request->name)]);
+        }
         $response = Tomato::store(
             request: $request,
             model: \TomatoPHP\TomatoCategory\Models\Category::class,

@@ -24,9 +24,9 @@ class CategoryStoreRequest extends FormRequest
     public function rules()
     {
         return [
-                        'parent_id' => 'nullable|exists:categories,id',
+            'parent_id' => 'nullable|exists:categories,id',
             'name' => 'required|max:255|string',
-            'slug' => 'required|max:255|string',
+            'slug' => 'nullable|max:255|string',
             'description' => 'nullable|max:255|string',
             'icon' => 'nullable|max:255',
             'color' => 'nullable|max:255',

@@ -58,29 +58,24 @@ class CategoryTable extends AbstractTable
             ->export()
             ->defaultSort('id')
             ->column(
-                key: 'id',
-                label: __('Id'),
-                sortable: true)
-            ->column(
-                key: 'icon',
-                label: __('Icon'),
-                sortable: true)
-            ->column(
-                key: 'parent.name',
-                label: __('Parent'),
-                sortable: true,
-                searchable: true)
-            ->column(
                 key: 'name',
                 label: __('Name'),
                 sortable: true)
             ->column(
+                key: 'description',
+                label: __('Description'),
+                sortable: true)
+            ->column(
+                key: 'slug',
+                label: __('Slug'),
+                sortable: true)
+            ->column(
                 key: 'activated',
-                label: __('Activated'),
+                label: __('Active?'),
                 sortable: true)
             ->column(
                 key: 'menu',
-                label: __('Menu'),
+                label: __('Show On Menu'),
                 sortable: true)
             ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
             ->paginate(15);
