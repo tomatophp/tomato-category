@@ -42,6 +42,6 @@ class TomatoCategoriesInstall extends Command
         $this->yarnCommand(['build']);
         $this->artisanCommand(["migrate"]);
         $this->artisanCommand(["optimize:clear"]);
-        $this->info('tomatoCategories installed successfully.');
+        $this->info('Tomato Category installed successfully.');
     }
 }

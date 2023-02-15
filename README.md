@@ -9,37 +9,6 @@ manage category/tags/types for any model with splade/tomato PHP
 ```bash
 composer require tomatophp/tomato-category
 ```
-after install your package please run this command
-
-```bash
-php artisan tomato-categories:install
-```
-
-## Publish Assets
-
-you can publish config file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-category-config"
-```
-
-you can publish views file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-category-views"
-```
-
-you can publish languages file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-category-lang"
-```
-
-you can publish migrations file by use this command
-
-```bash
-php artisan vendor:publish --tag="tomato-category-migrations"
-```
 
 ## Support
 
@@ -59,7 +28,7 @@ Please see [SECURITY](SECURITY.md) for more information about security.
 
 ## Credits
 
-- [Tomatophp](mailto:info@3x1.io)
+- [Fady Mondy](https://www.github.com/3x1io)
 
 ## License
 
