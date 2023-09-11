@@ -49,9 +49,6 @@ class TomatoCategoryServiceProvider extends ServiceProvider
 
         //Register Routes
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
-
-        TomatoMenuRegister::registerMenu(CategoryMenu::class);
-
     }
 
     public function boot(): void

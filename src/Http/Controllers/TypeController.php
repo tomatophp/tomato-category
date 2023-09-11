@@ -7,7 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use TomatoPHP\TomatoPHP\Services\Tomato;
+use TomatoPHP\TomatoAdmin\Facade\Tomato;
 
 class TypeController extends Controller
 {
@@ -19,6 +19,7 @@ class TypeController extends Controller
     {
         return Tomato::index(
             request: $request,
+            model: \TomatoPHP\TomatoCategory\Models\Type::class,
             view: 'tomato-category::types.index',
             table: \TomatoPHP\TomatoCategory\Tables\TypeTable::class,
         );
@@ -50,23 +51,22 @@ class TypeController extends Controller
      * @param \TomatoPHP\TomatoCategory\Http\Requests\Type\TypeStoreRequest $request
      * @return RedirectResponse
      */
-    public function store(\TomatoPHP\TomatoCategory\Http\Requests\Type\TypeStoreRequest $request): RedirectResponse
+    public function store(\TomatoPHP\TomatoCategory\Http\Requests\Type\TypeStoreRequest $request): RedirectResponse|JsonResponse
     {
         $response = Tomato::store(
             request: $request,
             model: \TomatoPHP\TomatoCategory\Models\Type::class,
-            message: __('Type created successfully'),
-            redirect: 'admin.types.index',
+            message: __('Type created successfully')
         );
 
-        return $response['redirect'];
+        return $response->redirect;
     }
 
     /**
      * @param \TomatoPHP\TomatoCategory\Models\Type $model
      * @return View
      */
-    public function show(\TomatoPHP\TomatoCategory\Models\Type $model): View
+    public function show(\TomatoPHP\TomatoCategory\Models\Type $model): View|JsonResponse
     {
         return Tomato::get(
             model: $model,
@@ -91,7 +91,7 @@ class TypeController extends Controller
      * @param \TomatoPHP\TomatoCategory\Models\Type $user
      * @return RedirectResponse
      */
-    public function update(\TomatoPHP\TomatoCategory\Http\Requests\Type\TypeUpdateRequest $request, \TomatoPHP\TomatoCategory\Models\Type $model): RedirectResponse
+    public function update(\TomatoPHP\TomatoCategory\Http\Requests\Type\TypeUpdateRequest $request, \TomatoPHP\TomatoCategory\Models\Type $model): RedirectResponse|JsonResponse
     {
         $response = Tomato::update(
             request: $request,
@@ -100,19 +100,21 @@ class TypeController extends Controller
             redirect: 'admin.types.index',
         );
 
-        return $response['redirect'];
+        return $response->redirect;
     }
 
     /**
      * @param \TomatoPHP\TomatoCategory\Models\Type $model
      * @return RedirectResponse
      */
-    public function destroy(\TomatoPHP\TomatoCategory\Models\Type $model): RedirectResponse
+    public function destroy(\TomatoPHP\TomatoCategory\Models\Type $model): RedirectResponse|JsonResponse
     {
-        return Tomato::destroy(
+        $response =  Tomato::destroy(
             model: $model,
             message: __('Type deleted successfully'),
             redirect: 'admin.types.index',
         );
+
+        return $response->redirect;
     }
 }
