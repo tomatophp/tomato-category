@@ -3,6 +3,9 @@
 namespace TomatoPHP\TomatoCategory\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * @property integer $id
@@ -17,12 +20,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property Content[] $contents
  * @property Typable[] $typables
  */
-class Type extends Model
+class Type extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
+    use HasTranslations;
+
+    public $translatable = ['name','description'];
+
     /**
      * @var array
      */
-    protected $fillable = ['for','name', 'key', 'description', 'color', 'icon', 'created_at', 'updated_at'];
+    protected $fillable = ['for','name', 'key','type', 'description', 'color', 'icon', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

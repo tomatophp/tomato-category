@@ -2,6 +2,7 @@
 
 namespace TomatoPHP\TomatoCategory\Tables;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use ProtoneMedia\Splade\AbstractTable;
 use ProtoneMedia\Splade\Facades\Toast;
@@ -14,9 +15,13 @@ class CategoryTable extends AbstractTable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(
+        public ?Builder $query=null
+    )
     {
-        //
+        if(!$this->query){
+            $this->query = \TomatoPHP\TomatoCategory\Models\Category::query();
+        }
     }
 
     /**
@@ -36,7 +41,7 @@ class CategoryTable extends AbstractTable
      */
     public function for()
     {
-        return \TomatoPHP\TomatoCategory\Models\Category::query();
+        return $this->query;
     }
 
     /**
@@ -47,6 +52,10 @@ class CategoryTable extends AbstractTable
      */
     public function configure(SpladeTable $table)
     {
+        $typesArray = [];
+        foreach (config('tomato-category.for') as $key => $value) {
+            $typesArray[$key] = $value[app()->getLocale()];
+        }
         $table
             ->withGlobalSearch(label: trans('tomato-admin::global.search'),columns: ['id','parent.name','name','slug',])
             ->bulkAction(
@@ -55,19 +64,30 @@ class CategoryTable extends AbstractTable
                 after: fn () => Toast::danger(__('Category Has Been Deleted'))->autoDismiss(2),
                 confirm: true
             )
+            ->selectFilter(
+                key: 'for',
+                label: __('Filter By For'),
+                options: $typesArray,
+            )
             ->export()
             ->defaultSort('id')
+            ->column(
+                key: 'id',
+                label: __('ID'),
+                sortable: true,
+                hidden: true
+            )
             ->column(
                 key: 'name',
                 label: __('Name'),
                 sortable: true)
             ->column(
-                key: 'description',
-                label: __('Description'),
+                key: 'icon',
+                label: __('Icon'),
                 sortable: true)
             ->column(
-                key: 'slug',
-                label: __('Slug'),
+                key: 'color',
+                label: __('Color'),
                 sortable: true)
             ->column(
                 key: 'activated',

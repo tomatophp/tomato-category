@@ -1,21 +1,34 @@
-<x-splade-modal class="font-main">
-    <h1 class="text-2xl font-bold mb-4">{{trans('tomato-admin::global.crud.create')}} {{__('Type')}}</h1>
-
+<x-tomato-admin-container label="{{trans('tomato-admin::global.crud.create')}} {{__('Type')}}">
     <x-splade-form class="flex flex-col space-y-4" action="{{route('admin.types.store')}}" method="post">
 
-        <x-splade-select label="{{__('For')}}" name="for" type="text"  placeholder="{{__('For')}}" >
-            @foreach(config('tomato-category.types') as $key=>$type)
-                <option value="{{$key}}">{{__($type)}}</option>
+        <x-splade-file filepond preview name="image" label="{{__('Image')}}" />
+
+        <x-splade-select choices label="{{__('For')}}" name="for" type="text"  placeholder="{{__('For')}}" >
+            @foreach(config('tomato-category.for') as $key=>$for)
+                <option value="{{$key}}">{{$for[app()->getLocale()]}}</option>
             @endforeach
         </x-splade-select>
 
+        <x-splade-select choices label="{{__('Type')}}" name="type" type="text"  placeholder="{{__('Type')}}" >
+            @foreach(config('tomato-category.types') as $key=>$type)
+                <option value="{{$key}}">{{$type[app()->getLocale()]}}</option>
+            @endforeach
+        </x-splade-select>
 
-        <x-splade-input label="{{__('Name')}}" name="name" type="text"  placeholder="Name" />
-          <x-splade-input label="{{__('Key')}}" name="key" type="text"  placeholder="Key" />
-          <x-splade-input label="{{__('Description')}}" name="description" type="text"  placeholder="Description" />
+        <div class="grid grid-cols-2 gap-4">
+            <x-tomato-translation label="{{__('Name')}}" placeholder="{{__('Name')}}" name="name" />
+            <x-tomato-translation label="{{__('Description')}}" placeholder="{{__('Description')}}" name="description" />
+            <x-splade-input class="col-span-2" label="{{__('Key')}}" name="key" type="text"  placeholder="{{__('Key')}}" />
+        </div>
 
+        <div class="flex justifiy-between gap-4">
+            <x-splade-input class="w-full" label="{{__('Icon')}}" name="icon"  placeholder="{{__('Icon')}}" />
+            <x-tomato-admin-color label="{{__('Color')}}" name="color"  placeholder="{{__('Color')}}" />
+        </div>
 
-
-        <x-splade-submit label="{{trans('tomato-admin::global.crud.create-new')}} {{__('Type')}}" :spinner="true" />
+        <div class="flex justify-start gap-2 pt-3">
+            <x-tomato-admin-submit  label="{{__('Save')}}" :spinner="true" />
+            <x-tomato-admin-button secondary :href="route('admin.types.index')" label="{{__('Cancel')}}"/>
+        </div>
     </x-splade-form>
-</x-splade-modal>
+</x-tomato-admin-container>

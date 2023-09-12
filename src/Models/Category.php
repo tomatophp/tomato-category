@@ -3,6 +3,9 @@
 namespace TomatoPHP\TomatoCategory\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Translatable\HasTranslations;
 
 /**
  * @property integer $id
@@ -21,8 +24,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property CategoriesMeta[] $categoriesMetas
  * @property Content[] $contents
  */
-class Category extends Model
+class Category extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+    use HasTranslations;
+
+    public $translatable = ['name', 'description'];
     /**
      * @var array
      */
@@ -60,13 +67,5 @@ class Category extends Model
     public function categoriesMetas()
     {
         return $this->hasMany('TomatoPHP\TomatoCategory\Models\CategoriesMeta');
-    }
-
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function contents()
-    {
-        return $this->hasMany('TomatoPHP\TomatoCategory\Models\Content');
     }
 }

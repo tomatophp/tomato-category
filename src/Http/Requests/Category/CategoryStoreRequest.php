@@ -25,13 +25,15 @@ class CategoryStoreRequest extends FormRequest
     {
         return [
             'parent_id' => 'nullable|exists:categories,id',
-            'name' => 'required|max:255|string',
-            'slug' => 'nullable|max:255|string',
-            'description' => 'nullable|max:255|string',
-            'icon' => 'nullable|max:255',
-            'color' => 'nullable|max:255',
+            'name_tomato_translations_ar' => 'required|max:255|string',
+            'name_tomato_translations_en' => 'required|max:255|string',
+            'description_tomato_translations_ar' => 'nullable|max:255|string',
+            'description_tomato_translations_en' => 'nullable|max:255|string',
+            'icon' => 'nullable|max:255|string',
+            'color' => 'nullable|max:255|string',
             'activated' => 'nullable',
-            'menu' => 'nullable'
+            'menu' => 'nullable',
+            'for' => 'required|max:255|string'
         ];
     }
 }

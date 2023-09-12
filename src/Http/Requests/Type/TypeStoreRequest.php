@@ -24,11 +24,16 @@ class TypeStoreRequest extends FormRequest
     public function rules()
     {
         return [
-                        'name' => 'required|max:255|string',
+            'image' => 'nullable|file|image|max:1024',
+            'name_tomato_translations_ar' => 'required|max:255|string',
+            'name_tomato_translations_en' => 'required|max:255|string',
             'key' => 'required|max:255|string',
-            'description' => 'nullable|max:255|string',
-            'color' => 'nullable|max:255',
-            'icon' => 'nullable|max:255'
+            'description_tomato_translations_ar' => 'nullable|max:255|string',
+            'description_tomato_translations_en' => 'nullable|max:255|string',
+            'color' => 'nullable|max:255|string',
+            'icon' => 'nullable|max:255|string',
+            'for' => 'required|max:255|string',
+            'type' => 'required|max:255|string',
         ];
     }
 }

@@ -1,101 +1,33 @@
-<x-splade-modal class="font-main">
-    <h1 class="text-2xl font-bold mb-4">{{trans('tomato-admin::global.crud.view')}} {{ __('Category') }} #{{$model->id}}</h1>
-
-    <div class="flex flex-col space-y-4">
-
-        @if( $model->parent)
-          <div class="flex justify-between">
-              <div>
-                  <h3 class="text-lg font-bold">
-                      {{__('Parent')}}
-                  </h3>
-              </div>
-              <div>
-                  <h3 class="text-lg">
-                      {{ $model->parent->name}}
-                  </h3>
-              </div>
-          </div>
-        @endif
-
-          <div class="flex justify-between">
-              <div>
-                  <h3 class="text-lg font-bold">
-                      {{__('Name')}}
-                  </h3>
-              </div>
-              <div>
-                  <h3 class="text-lg">
-                      {{ $model->name}}
-                  </h3>
-              </div>
-          </div>
-
-          <div class="flex justify-between">
-              <div>
-                  <h3 class="text-lg font-bold">
-                      {{__('Slug')}}
-                  </h3>
-              </div>
-              <div>
-                  <h3 class="text-lg">
-                      {{ $model->slug}}
-                  </h3>
-              </div>
-          </div>
-
-          <div class="flex justify-between">
-              <div>
-                  <h3 class="text-lg font-bold">
-                      {{__('Description')}}
-                  </h3>
-              </div>
-              <div>
-                  <h3 class="text-lg">
-                      @if($model->description)
-                          {{$model->description}}
-                      @else
-                          -
-                      @endif
-                  </h3>
-              </div>
-          </div>
-
-
-
-          <div class="flex justify-between">
-              <div>
-                  <h3 class="text-lg font-bold">
-                      {{__('Activated')}}
-                  </h3>
-              </div>
-              <div>
-                  <h3 class="text-lg">
-                      @if($model->activated)
-                          <x-heroicon-s-check-circle class="text-green-600 h-8 w-8 ltr:mr-2 rtl:ml-2"/>
-                      @else
-                          <x-heroicon-s-x-circle class="text-red-600 h-8 w-8 ltr:mr-2 rtl:ml-2"/>
-                      @endif
-                  </h3>
-              </div>
-          </div>
-
-          <div class="flex justify-between">
-              <div>
-                  <h3 class="text-lg font-bold">
-                      {{__('Show On Menu')}}
-                  </h3>
-              </div>
-              <div>
-                  <h3 class="text-lg">
-                      @if($model->menu)
-                          <x-heroicon-s-check-circle class="text-green-600 h-8 w-8 ltr:mr-2 rtl:ml-2"/>
-                      @else
-                          <x-heroicon-s-x-circle class="text-red-600 h-8 w-8 ltr:mr-2 rtl:ml-2"/>
-                      @endif
-                  </h3>
-              </div>
-          </div>
-
+<x-tomato-admin-container label="{{trans('tomato-admin::global.crud.view')}} {{ __('Type') }} #{{$model->id}}">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <x-tomato-admin-row :label="__('Parent')" :value="$model->parent?->name" type="text" />
+        <x-tomato-admin-row :label="__('For')" :value="$model->for" type="text" />
+        <x-tomato-admin-row :label="__('Name')" :value="$model->name" type="text" />
+        <x-tomato-admin-row :label="__('Slug')" :value="$model->slug" type="text" />
+        <x-tomato-admin-row :label="__('Description')" :value="$model->description" type="text" />
+        <x-tomato-admin-row :label="__('Icon')" :value="$model->icon" type="icon" />
+        <x-tomato-admin-row :label="__('Color')" :value="$model->color" type="color" />
+        <x-tomato-admin-row :label="__('Is Active?')" :value="$model->activated" type="bool" />
+        <x-tomato-admin-row :label="__('Show On Menu')" :value="$model->menu" type="bool" />
+        <x-tomato-admin-row :label="__('Image')" :value="$model->getMedia('image')?->first()?->getUrl()" type="image" />
     </div>
-</x-splade-modal>
+    <div class="flex justify-start gap-2 pt-3">
+        <x-tomato-admin-button warning :href="route('admin.categories.edit', $model->id)">
+            {{__('Edit')}}
+        </x-tomato-admin-button>
+        <x-tomato-admin-button
+            danger
+            :href="route('admin.categories.destroy', $model->id)"
+            title="{{trans('tomato-admin::global.crud.edit')}}"
+            confirm="{{trans('tomato-admin::global.crud.delete-confirm')}}"
+            confirm-text="{{trans('tomato-admin::global.crud.delete-confirm-text')}}"
+            confirm-button="{{trans('tomato-admin::global.crud.delete-confirm-button')}}"
+            cancel-button="{{trans('tomato-admin::global.crud.delete-confirm-cancel-button')}}"
+            class="px-2 text-red-500"
+            method="delete"
+        >
+            {{__('Delete')}}
+        </x-tomato-admin-button>
+        <x-tomato-admin-button secondary :href="route('admin.categories.index')" label="{{__('Cancel')}}"/>
+    </div>
+</x-tomato-admin-container>

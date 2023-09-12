@@ -1,23 +1,37 @@
-<x-splade-modal class="font-main">
-    <h1 class="text-2xl font-bold mb-4">{{trans('tomato-admin::global.crud.create')}} {{__('Category')}}</h1>
-
+<x-tomato-admin-container label="{{trans('tomato-admin::global.crud.create')}} {{__('Category')}}">
     <x-splade-form class="flex flex-col space-y-4" action="{{route('admin.categories.store')}}" method="post">
 
-        <x-splade-select label="{{__('For')}}" name="for" type="text"  placeholder="{{__('For')}}" >
-            @foreach(config('tomato-category.types') as $key=>$type)
-                <option value="{{$key}}">{{__($type)}}</option>
-            @endforeach
-        </x-splade-select>
+        <x-splade-file filepond preview name="image" label="{{__('Image')}}" />
 
-          <x-splade-input label="{{__('Name')}}" name="name" type="text"  placeholder="{{__('Name')}}" />
-          <x-splade-input label="{{__('Slug')}}" name="slug" type="text"  placeholder="{{__('Slug')}}" />
+        <div class="grid grid-cols-2 gap-4">
+            <x-splade-select choices label="{{__('For')}}" name="for" type="text"  placeholder="{{__('For')}}" >
+                @foreach(config('tomato-category.for') as $key=>$type)
+                    <option value="{{$key}}">{{$type[app()->getLocale()]}}</option>
+                @endforeach
+            </x-splade-select>
+            <x-splade-select label="{{__('Parent Category')}}" placeholder="{{__('Parent Category')}}" name="parent_id" remote-url="/admin/categories/api" remote-root="model.data" option-label=name option-value="id" choices/>
 
-          <x-splade-select label="{{__('Parent Category')}}" placeholder="{{__('Parent Category')}}" name="parent_id" remote-url="/admin/categories/api" remote-root="model.data" option-label=name option-value="id" choices/>
-          <x-splade-textarea label="{{__('Description')}}" name="description" type="text"  placeholder="{{__('Description')}}" />
 
-          <x-splade-checkbox label="{{__('Active')}}" name="activated" label="Activated" />
-          <x-splade-checkbox label="{{__('Show On Menu')}}" name="menu" label="Menu" />
+            <div class="col-span-2">
+                <x-tomato-translation  label="{{__('Name')}}" name="name"   placeholder="{{__('Name')}}" />
+            </div>
+            <div class="col-span-2">
+                <x-tomato-translation type="textarea" label="{{__('Description')}}" name="description"   placeholder="{{__('Description')}}" />
+            </div>
 
-        <x-splade-submit label="{{trans('tomato-admin::global.crud.create-new')}} {{__('Category')}}" :spinner="true" />
+            <div class="flex justifiy-between gap-4 col-span-2">
+                <x-splade-input class="w-full" label="{{__('Icon')}}" name="icon"  placeholder="{{__('Icon')}}" />
+                <x-tomato-admin-color label="{{__('Color')}}" name="color"  placeholder="{{__('Color')}}" />
+            </div>
+
+
+            <x-splade-checkbox label="{{__('Active')}}" name="activated" label="Activated" />
+            <x-splade-checkbox label="{{__('Show On Menu')}}" name="menu" label="Menu" />
+        </div>
+
+        <div class="flex justify-start gap-2 pt-3">
+            <x-tomato-admin-submit  label="{{__('Save')}}" :spinner="true" />
+            <x-tomato-admin-button secondary :href="route('admin.categories.index')" label="{{__('Cancel')}}"/>
+        </div>
     </x-splade-form>
-</x-splade-modal>
+</x-tomato-admin-container>

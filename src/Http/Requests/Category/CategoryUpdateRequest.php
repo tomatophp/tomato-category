@@ -24,14 +24,16 @@ class CategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-                        'parent_id' => 'nullable|exists:categories,id',
-            'name' => 'sometimes|max:255|string',
-            'slug' => 'sometimes|max:255|string',
-            'description' => 'nullable|max:255|string',
-            'icon' => 'nullable|max:255',
-            'color' => 'nullable|max:255',
+            'parent_id' => 'nullable|exists:categories,id',
+            'name_tomato_translations_ar' => 'sometimes|max:255|string',
+            'name_tomato_translations_en' => 'sometimes|max:255|string',
+            'description_tomato_translations_ar' => 'nullable|max:255|string',
+            'description_tomato_translations_en' => 'nullable|max:255|string',
+            'icon' => 'nullable|max:255|string',
+            'color' => 'nullable|max:255|string',
             'activated' => 'nullable',
-            'menu' => 'nullable'
+            'menu' => 'nullable',
+            'for' => 'sometimes|max:255|string'
         ];
     }
 }
