@@ -1,5 +1,8 @@
 <x-tomato-admin-container label="{{trans('tomato-admin::global.crud.create')}} {{__('Type')}}">
-    <x-splade-form class="flex flex-col space-y-4" action="{{route('admin.types.store')}}" method="post">
+    <x-splade-form class="flex flex-col space-y-4" action="{{route('admin.types.store')}}" method="post" :default="[
+        'for' => array_keys(config('tomato-category.for'))[0],
+        'type' => array_keys(config('tomato-category.types'))[0]
+    ]">
 
         <x-splade-file filepond preview name="image" label="{{__('Image')}}" />
 
