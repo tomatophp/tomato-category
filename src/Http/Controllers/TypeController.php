@@ -41,6 +41,10 @@ class TypeController extends Controller
         return Tomato::json(
             request: $request,
             model: \TomatoPHP\TomatoCategory\Models\Type::class,
+            filters: [
+                'for',
+                'type'
+            ]
         );
     }
 
