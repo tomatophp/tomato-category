@@ -24,5 +24,7 @@ return [
     "features" => [
         "category" => true,
         "types" => true
-    ]
+    ],
+
+    "middelware" => ['auth:sanctum']
 ];
