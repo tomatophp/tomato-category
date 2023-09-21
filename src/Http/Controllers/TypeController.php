@@ -25,6 +25,7 @@ class TypeController extends Controller
             model: \TomatoPHP\TomatoCategory\Models\Type::class,
             view: 'tomato-category::types.index',
             table: \TomatoPHP\TomatoCategory\Tables\TypeTable::class,
+            resource: config('tomato-category.types_resource', null),
             filters: [
                 "for",
                 "type"

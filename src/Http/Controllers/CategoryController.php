@@ -26,6 +26,7 @@ class CategoryController extends Controller
             model: \TomatoPHP\TomatoCategory\Models\Category::class,
             view: 'tomato-category::categories.index',
             table: \TomatoPHP\TomatoCategory\Tables\CategoryTable::class,
+            resource: config('tomato-category.categories_resource', null),
             filters: [
                 "for"
             ]

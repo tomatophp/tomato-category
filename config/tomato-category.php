@@ -26,5 +26,7 @@ return [
         "types" => true
     ],
 
-    "middelware" => ['auth:sanctum']
+    "middleware" => ['auth:sanctum'],
+    "categories_resource" => null,
+    "types_resource" => null,
 ];
