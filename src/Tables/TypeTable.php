@@ -55,11 +55,11 @@ class TypeTable extends AbstractTable
     {
         $forArray = [];
         foreach (config('tomato-category.for') as $key => $value) {
-            $forArray[$key] = $value[app()->getLocale()];
+            $forArray[$key] = $value[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()]  ?? "";
         }
         $typesArray = [];
         foreach (config('tomato-category.types') as $key => $value) {
-            $typesArray[$key] = $value[app()->getLocale()];
+            $typesArray[$key] = $value[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()]  ?? "";
         }
         $table
             ->withGlobalSearch(label: trans('tomato-admin::global.search'),columns: ['id','name','key',])

@@ -6,7 +6,7 @@
         <div class="grid grid-cols-2 gap-4">
             <x-splade-select choices label="{{__('For')}}" name="for" type="text"  placeholder="{{__('For')}}" >
                 @foreach(config('tomato-category.for') as $key=>$type)
-                    <option value="{{$key}}">{{$type[app()->getLocale()]}}</option>
+                    <option value="{{$key}}">{{$type[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()]  ?? ""}}</option>
                 @endforeach
             </x-splade-select>
             <x-splade-select label="{{__('Parent Category')}}" placeholder="{{__('Parent Category')}}" name="parent_id" remote-url="/admin/categories/api" remote-root="model.data" option-label=name option-value="id" choices/>

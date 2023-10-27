@@ -54,7 +54,7 @@ class CategoryTable extends AbstractTable
     {
         $typesArray = [];
         foreach (config('tomato-category.for') as $key => $value) {
-            $typesArray[$key] = $value[app()->getLocale()];
+            $typesArray[$key] = $value[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()] ?? "";
         }
         $table
             ->withGlobalSearch(label: trans('tomato-admin::global.search'),columns: ['id','parent.name','name','slug',])

@@ -5,13 +5,13 @@
 
         <x-splade-select choices label="{{__('For')}}" name="for"  placeholder="{{__('For')}}" >
             @foreach(config('tomato-category.for') as $key=>$for)
-                <option value="{{$key}}">{{$for[app()->getLocale()]}}</option>
+                <option value="{{$key}}">{{$for[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()]  ?? ""}}</option>
             @endforeach
         </x-splade-select>
 
         <x-splade-select choices label="{{__('Type')}}" name="type"  placeholder="{{__('Type')}}" >
             @foreach(config('tomato-category.types') as $key=>$type)
-                <option value="{{$key}}">{{$type[app()->getLocale()]}}</option>
+                <option value="{{$key}}">{{$type[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()]  ?? ""}}</option>
             @endforeach
         </x-splade-select>
 
