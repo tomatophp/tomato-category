@@ -42,6 +42,9 @@ class CategoryController extends Controller
         return Tomato::json(
             request: $request,
             model: \TomatoPHP\TomatoCategory\Models\Category::class,
+            filters: [
+                "for"
+            ]
         );
     }
 
