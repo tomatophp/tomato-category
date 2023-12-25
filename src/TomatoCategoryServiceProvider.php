@@ -2,16 +2,22 @@
 
 namespace TomatoPHP\TomatoCategory;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;
 use TomatoPHP\TomatoAdmin\Services\Contracts\Menu;
+use TomatoPHP\TomatoCategory\Services\TomatoCategoryHandler;
 use TomatoPHP\TomatoCategory\Menus\CategoryMenu;
+use TomatoPHP\TomatoCategory\Services\CategoryServices;
 
 
 class TomatoCategoryServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
+
+
+
         //Register generate command
         $this->commands([
            \TomatoPHP\TomatoCategory\Console\TomatoCategoriesInstall::class,
@@ -48,9 +54,15 @@ class TomatoCategoryServiceProvider extends ServiceProvider
            __DIR__.'/../resources/lang' => app_path('lang/vendor/tomato-category'),
         ], 'tomato-category-lang');
 
+        $this->app->bind('tomato-category', function () {
+            return new TomatoCategoryHandler();
+        });
+
         //Register Routes
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         $this->loadRoutesFrom(__DIR__.'/../routes/api.php');
+
+
     }
 
     public function boot(): void
@@ -72,5 +84,8 @@ class TomatoCategoryServiceProvider extends ServiceProvider
                 ->route("admin.types.index");
         }
         TomatoMenu::register($menus);
+
+        $this->app->register(TomatoCategoryRouteServiceProvider::class);
+
     }
 }

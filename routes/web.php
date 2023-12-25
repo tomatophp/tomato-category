@@ -27,3 +27,4 @@ if(config("tomato-category.features.types")){
         Route::delete('admin/types/{model}', [\TomatoPHP\TomatoCategory\Http\Controllers\TypeController::class, 'destroy'])->name('types.destroy');
     });
 }
+

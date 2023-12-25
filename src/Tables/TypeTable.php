@@ -16,7 +16,8 @@ class TypeTable extends AbstractTable
      * @return void
      */
     public function __construct(
-        public ?Builder $query=null
+        public mixed $query=null,
+        public bool $withoutFilters=false
     )
     {
         if(!$this->query){
@@ -53,14 +54,7 @@ class TypeTable extends AbstractTable
      */
     public function configure(SpladeTable $table)
     {
-        $forArray = [];
-        foreach (config('tomato-category.for') as $key => $value) {
-            $forArray[$key] = $value[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()]  ?? "";
-        }
-        $typesArray = [];
-        foreach (config('tomato-category.types') as $key => $value) {
-            $typesArray[$key] = $value[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()]  ?? "";
-        }
+
         $table
             ->withGlobalSearch(label: trans('tomato-admin::global.search'),columns: ['id','name','key',])
             ->bulkAction(
@@ -68,16 +62,6 @@ class TypeTable extends AbstractTable
                 each: fn (\TomatoPHP\TomatoCategory\Models\Type $model) => $model->delete(),
                 after: fn () => Toast::danger(__('Type Has Been Deleted'))->autoDismiss(2),
                 confirm: true
-            )
-            ->selectFilter(
-                key: 'for',
-                label: __('Filter By For'),
-                options: $forArray,
-            )
-            ->selectFilter(
-                key: 'type',
-                label: __('Filter By Type'),
-                options: $typesArray,
             )
             ->export()
             ->defaultSort('id')
@@ -108,5 +92,27 @@ class TypeTable extends AbstractTable
 
             ->column(key: 'actions',label: trans('tomato-admin::global.crud.actions'))
             ->paginate(15);
+
+        if(!$this->withoutFilters){
+            $forArray = [];
+            foreach (config('tomato-category.for') as $key => $value) {
+                $forArray[$key] = $value[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()]  ?? "";
+            }
+            $typesArray = [];
+            foreach (config('tomato-category.types') as $key => $value) {
+                $typesArray[$key] = $value[\Illuminate\Support\Str::of(app()->getLocale())->remove(' ')->toString()]  ?? "";
+            }
+
+            $table->selectFilter(
+                key: 'for',
+                label: __('Filter By For'),
+                options: $forArray,
+            )
+            ->selectFilter(
+                key: 'type',
+                label: __('Filter By Type'),
+                options: $typesArray,
+            );
+        }
     }
 }
