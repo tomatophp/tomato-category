@@ -12,8 +12,6 @@ use TomatoPHP\TomatoTranslations\Services\HandelTranslationInput;
 
 class TypeController extends Controller
 {
-    use HandelTranslationInput;
-
     /**
      * @param Request $request
      * @return View
@@ -65,7 +63,6 @@ class TypeController extends Controller
      */
     public function store(\TomatoPHP\TomatoCategory\Http\Requests\Type\TypeStoreRequest $request): RedirectResponse|JsonResponse
     {
-        $this->translate($request);
         $response = Tomato::store(
             request: $request,
             model: \TomatoPHP\TomatoCategory\Models\Type::class,
@@ -101,7 +98,6 @@ class TypeController extends Controller
      */
     public function edit(\TomatoPHP\TomatoCategory\Models\Type $model): View
     {
-        $this->loadTranslation($model, ['name', 'description']);
         return Tomato::get(
             model: $model,
             view: 'tomato-category::types.edit',
@@ -119,7 +115,6 @@ class TypeController extends Controller
      */
     public function update(\TomatoPHP\TomatoCategory\Http\Requests\Type\TypeUpdateRequest $request, \TomatoPHP\TomatoCategory\Models\Type $model): RedirectResponse|JsonResponse
     {
-        $this->translate($request);
         $response = Tomato::update(
             request: $request,
             model: $model,

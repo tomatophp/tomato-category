@@ -1,5 +1,5 @@
 <x-tomato-admin-container label="{{trans('tomato-admin::global.crud.create')}} {{__('Category')}}">
-    <x-splade-form class="flex flex-col space-y-4" action="{{route('admin.categories.store')}}" method="post">
+    <x-splade-form :default="['for' => array_keys(config('tomato-category.for'))[0]]" class="flex flex-col gap-4" action="{{route('admin.categories.store')}}" method="post">
 
         <x-splade-file filepond preview name="image" label="{{__('Image')}}" />
 
@@ -13,14 +13,14 @@
 
 
             <div class="col-span-2">
-                <x-tomato-translation  label="{{__('Name')}}" name="name"   placeholder="{{__('Name')}}" />
+                <x-tomato-translation label="{{__('Name')}}" name="name" placeholder="{{__('Name')}}" />
             </div>
             <div class="col-span-2">
                 <x-tomato-translation type="textarea" label="{{__('Description')}}" name="description"   placeholder="{{__('Description')}}" />
             </div>
 
             <div class="flex justifiy-between gap-4 col-span-2">
-                <x-splade-input class="w-full" label="{{__('Icon')}}" name="icon"  placeholder="{{__('Icon')}}" />
+                <x-tomato-admin-icon class="w-full" label="{{__('Icon')}}" name="icon"  placeholder="{{__('Icon')}}" />
                 <x-tomato-admin-color label="{{__('Color')}}" name="color"  placeholder="{{__('Color')}}" />
             </div>
 
