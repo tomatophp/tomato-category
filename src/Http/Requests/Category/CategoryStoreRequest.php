@@ -25,12 +25,12 @@ class CategoryStoreRequest extends FormRequest
     {
         return [
             'parent_id' => 'nullable|exists:categories,id',
-            'name_tomato_translations_ar' => 'required|max:255|string',
-            'name_tomato_translations_en' => 'required|max:255|string',
-            'description_tomato_translations_ar' => 'nullable|max:255|string',
-            'description_tomato_translations_en' => 'nullable|max:255|string',
+            'name' => 'required|array|min:1',
+            'name.*' => 'required|max:255|string',
+            'description' => 'nullable|array|min:1',
+            'description.*' => 'nullable|max:255|string',
             'icon' => 'nullable|max:255|string',
-            'color' => 'nullable|max:255|string',
+            'color' => 'nullable|max:255|string ',
             'activated' => 'nullable',
             'menu' => 'nullable',
             'for' => 'required|max:255|string'

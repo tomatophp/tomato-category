@@ -13,7 +13,6 @@ use TomatoPHP\TomatoTranslations\Services\HandelTranslationInput;
 
 class CategoryController extends Controller
 {
-    use HandelTranslationInput;
 
     /**
      * @param Request $request
@@ -64,9 +63,8 @@ class CategoryController extends Controller
      */
     public function store(\TomatoPHP\TomatoCategory\Http\Requests\Category\CategoryStoreRequest $request): RedirectResponse|JsonResponse
     {
-        $this->translate($request);
         if(!$request->has('slug') || empty($request->slug)) {
-            $request->merge(['slug' => Str::slug($request->get('name_tomato_translations_'.app()->getLocale()))]);
+            $request->merge(['slug' => Str::slug($request->get('name')[app()->getLocale()])]);
         }
         $response = Tomato::store(
             request: $request,
@@ -104,7 +102,6 @@ class CategoryController extends Controller
      */
     public function edit(\TomatoPHP\TomatoCategory\Models\Category $model): View
     {
-        $this->loadTranslation($model, ['name', 'description']);
         return Tomato::get(
             model: $model,
             view: 'tomato-category::categories.edit',
@@ -122,7 +119,6 @@ class CategoryController extends Controller
      */
     public function update(\TomatoPHP\TomatoCategory\Http\Requests\Category\CategoryUpdateRequest $request, \TomatoPHP\TomatoCategory\Models\Category $model): RedirectResponse|JsonResponse
     {
-        $this->translate($request);
         $response = Tomato::update(
             request: $request,
             model: $model,
@@ -149,6 +145,6 @@ class CategoryController extends Controller
             redirect: 'admin.categories.index',
         );
 
-        $response->redirect;
+        return $response->redirect;
     }
 }

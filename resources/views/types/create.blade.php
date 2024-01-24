@@ -25,7 +25,7 @@
         </div>
 
         <div class="flex justifiy-between gap-4">
-            <x-splade-input class="w-full" label="{{__('Icon')}}" name="icon"  placeholder="{{__('Icon')}}" />
+            <x-tomato-admin-icon class="w-full" label="{{__('Icon')}}" name="icon"  placeholder="{{__('Icon')}}" />
             <x-tomato-admin-color label="{{__('Color')}}" name="color"  placeholder="{{__('Color')}}" />
         </div>
 

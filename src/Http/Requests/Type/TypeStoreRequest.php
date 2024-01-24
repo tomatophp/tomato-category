@@ -25,11 +25,11 @@ class TypeStoreRequest extends FormRequest
     {
         return [
             'image' => 'nullable|file|image|max:1024',
-            'name_tomato_translations_ar' => 'required|max:255|string',
-            'name_tomato_translations_en' => 'required|max:255|string',
+            'name' => 'required|array|min:1',
+            'name.*' => 'required|max:255|string',
+            'description' => 'nullable|array',
+            'description.*' => 'nullable|max:255|string',
             'key' => 'required|max:255|string',
-            'description_tomato_translations_ar' => 'nullable|max:255|string',
-            'description_tomato_translations_en' => 'nullable|max:255|string',
             'color' => 'nullable|max:255|string',
             'icon' => 'nullable|max:255|string',
             'for' => 'required|max:255|string',
