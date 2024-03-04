@@ -25,8 +25,8 @@
             </div>
 
 
-            <x-splade-checkbox label="{{__('Active')}}" name="activated" label="Activated" />
-            <x-splade-checkbox label="{{__('Show On Menu')}}" name="menu" label="Menu" />
+            <x-splade-checkbox label="{{__('Active')}}" name="activated" />
+            <x-splade-checkbox label="{{__('Show On Menu')}}" name="menu" />
         </div>
 
         <div class="flex justify-start gap-2 pt-3">
