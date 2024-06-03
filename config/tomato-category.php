@@ -25,7 +25,10 @@ return [
         "category" => true,
         "types" => true
     ],
-
+    "menu" => [
+        "category" => true,
+        "types" => true
+    ],
     "middleware" => ['auth:sanctum'],
     "categories_resource" => null,
     "types_resource" => null,

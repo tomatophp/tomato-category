@@ -2,7 +2,7 @@
 
 namespace TomatoPHP\TomatoCategory;
 
-use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use TomatoPHP\TomatoAdmin\Facade\TomatoMenu;

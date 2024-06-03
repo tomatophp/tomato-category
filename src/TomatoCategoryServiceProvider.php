@@ -15,9 +15,6 @@ class TomatoCategoryServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-
-
-
         //Register generate command
         $this->commands([
            \TomatoPHP\TomatoCategory\Console\TomatoCategoriesInstall::class,
@@ -69,14 +66,14 @@ class TomatoCategoryServiceProvider extends ServiceProvider
     {
         $menus = [];
 
-        if(config("tomato-category.features.category")){
+        if(config("tomato-category.menu.category")){
             $menus[] = Menu::make()
                 ->group(__("Category"))
                 ->label(__("Categories"))
                 ->icon("bx bxs-category")
                 ->route("admin.categories.index");
         }
-        if(config("tomato-category.features.types")){
+        if(config("tomato-category.menu.types")){
             $menus[] = Menu::make()
                 ->group(__("Category"))
                 ->label(__("Types"))

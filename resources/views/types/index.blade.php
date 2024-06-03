@@ -2,6 +2,9 @@
     <x-slot:header>
         {{ __('Type') }}
     </x-slot:header>
+    <x-slot:icon>
+        bx bxs-check-circle
+    </x-slot:icon>
     <x-slot:buttons>
         <x-tomato-admin-button modal :href="route('admin.types.create')">
             {{trans('tomato-admin::global.crud.create-new')}} {{__('Type')}}

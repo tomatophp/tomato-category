@@ -2,6 +2,9 @@
     <x-slot:header>
         {{ __('Category') }}
     </x-slot:header>
+    <x-slot:icon>
+        bx bxs-category
+    </x-slot:icon>
     <x-slot:buttons>
         <x-tomato-admin-button modal :href="route('admin.categories.create')">
             {{trans('tomato-admin::global.crud.create-new')}} {{__('Category')}}
